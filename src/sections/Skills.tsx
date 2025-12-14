@@ -55,7 +55,7 @@ const Skills: React.FC = () => {
           marginBottom: 32,
           color: '#dc6139',
           fontWeight: 700,
-          fontFamily: "'Playfair Display', 'Times New Roman', 'Noto Serif', serif",
+          fontFamily: 'Georgia, serif',
         }}
       >
         Kỹ năng

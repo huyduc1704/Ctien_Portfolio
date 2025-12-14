@@ -22,9 +22,20 @@ const pages = [
 const BookFlip: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const goToPage = (index: number) => {
     if (isFlipping || index < 0 || index >= pages.length || index === currentPage) return;
@@ -43,16 +54,26 @@ const BookFlip: React.FC = () => {
 
   // Touch handlers for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (isFlipping) return;
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = 0; // Reset
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    // Prevent default scrolling when swiping
+    if (Math.abs(e.touches[0].clientX - touchStartX.current) > 10) {
+      e.preventDefault();
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    if (isFlipping) return;
     touchEndX.current = e.changedTouches[0].clientX;
     handleSwipe();
   };
 
   const handleSwipe = () => {
-    if (isFlipping) return;
+    if (isFlipping || touchStartX.current === 0 || touchEndX.current === 0) return;
     const swipeDistance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 50;
 
@@ -65,6 +86,9 @@ const BookFlip: React.FC = () => {
         goToPrev();
       }
     }
+    // Reset
+    touchStartX.current = 0;
+    touchEndX.current = 0;
   };
 
   // Keyboard navigation
@@ -117,38 +141,47 @@ const BookFlip: React.FC = () => {
         overflow: 'hidden',
         position: 'relative',
         background: '#f6f0df',
-        perspective: '2000px',
+        perspective: isMobile ? '1500px' : '2000px',
         perspectiveOrigin: 'center center',
+        touchAction: 'pan-y', // Allow vertical scroll, prevent horizontal
+        WebkitOverflowScrolling: 'touch',
+        WebkitTapHighlightColor: 'transparent',
       }}
       onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Navigation Dots */}
+      {/* Navigation Dots - Hidden on mobile, shown on desktop */}
       <div
         style={{
           position: 'fixed',
-          right: 20,
+          right: 'clamp(10px, 2vw, 20px)',
           top: '50%',
           transform: 'translateY(-50%)',
           zIndex: 100,
           display: 'flex',
           flexDirection: 'column',
-          gap: 12,
+          gap: 'clamp(8px, 1.5vw, 12px)',
         }}
+        className="nav-dots"
       >
         {pages.map((page, index) => {
           const isActive = currentPage === index;
           return (
             <button
               key={page.id}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 if (isFlipping) return;
                 goToPage(index);
               }}
               disabled={isFlipping}
               style={{
-                width: 12,
-                height: 12,
+                width: 'clamp(8px, 1.5vw, 12px)',
+                height: 'clamp(8px, 1.5vw, 12px)',
+                minWidth: 'clamp(8px, 1.5vw, 12px)',
+                minHeight: 'clamp(8px, 1.5vw, 12px)',
                 borderRadius: '50%',
                 border: 'none',
                 background: isActive ? '#dc6139' : '#d4c5b0',
@@ -156,6 +189,7 @@ const BookFlip: React.FC = () => {
                 transition: 'all 0.3s',
                 padding: 0,
                 opacity: isFlipping && !isActive ? 0.5 : 1,
+                touchAction: 'manipulation',
               }}
               title={page.title}
               aria-label={`Go to ${page.title}`}
@@ -179,18 +213,21 @@ const BookFlip: React.FC = () => {
           size="large"
           style={{
             position: 'fixed',
-            left: 20,
+            left: 'clamp(10px, 2vw, 20px)',
             top: '50%',
             transform: 'translateY(-50%)',
             zIndex: 100,
-            width: 56,
-            height: 56,
+            width: 'clamp(44px, 8vw, 56px)',
+            height: 'clamp(44px, 8vw, 56px)',
+            minWidth: 'clamp(44px, 8vw, 56px)',
+            minHeight: 'clamp(44px, 8vw, 56px)',
             background: '#fff',
             borderColor: '#dc6139',
             color: '#dc6139',
             boxShadow: '0 4px 16px rgba(220, 97, 57, 0.2)',
             opacity: isFlipping ? 0.5 : 1,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            touchAction: 'manipulation',
           }}
           onMouseEnter={(e) => {
             if (!isFlipping) {
@@ -228,18 +265,21 @@ const BookFlip: React.FC = () => {
           size="large"
           style={{
             position: 'fixed',
-            right: 60,
+            right: 'clamp(50px, 8vw, 60px)',
             top: '50%',
             transform: 'translateY(-50%)',
             zIndex: 100,
-            width: 56,
-            height: 56,
+            width: 'clamp(44px, 8vw, 56px)',
+            height: 'clamp(44px, 8vw, 56px)',
+            minWidth: 'clamp(44px, 8vw, 56px)',
+            minHeight: 'clamp(44px, 8vw, 56px)',
             background: '#fff',
             borderColor: '#dc6139',
             color: '#dc6139',
             boxShadow: '0 4px 16px rgba(220, 97, 57, 0.2)',
             opacity: isFlipping ? 0.5 : 1,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            touchAction: 'manipulation',
           }}
           onMouseEnter={(e) => {
             if (!isFlipping) {
@@ -267,14 +307,14 @@ const BookFlip: React.FC = () => {
       <div
         style={{
           position: 'fixed',
-          bottom: 20,
-          right: 20,
+          bottom: 'clamp(10px, 2vh, 20px)',
+          right: 'clamp(10px, 2vw, 20px)',
           zIndex: 100,
           background: 'rgba(255, 255, 255, 0.9)',
-          padding: '8px 16px',
+          padding: 'clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 16px)',
           borderRadius: 20,
           color: '#dc6139',
-          fontSize: 14,
+          fontSize: 'clamp(12px, 2.5vw, 14px)',
           fontWeight: 600,
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
         }}
@@ -303,10 +343,10 @@ const BookFlip: React.FC = () => {
               key={page.id}
               style={{
                 position: 'absolute',
-                width: '45vw',
-                maxWidth: 600,
-                height: '80vh',
-                maxHeight: '80vh',
+                width: isMobile ? '90vw' : '45vw',
+                maxWidth: isMobile ? '100%' : 600,
+                height: isMobile ? '85vh' : '80vh',
+                maxHeight: isMobile ? '85vh' : '80vh',
 
                 // CẤU HÌNH 3D CHUẨN:
                 transformStyle: 'preserve-3d',
@@ -333,11 +373,15 @@ const BookFlip: React.FC = () => {
                   background: '#fff',
                   borderRadius: '0 8px 8px 0', // Bo góc bên phải (bên trái là gáy phẳng)
                   boxShadow: 'inset 20px 0 50px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.1)',
-                  padding: 'clamp(40px, 5vw, 60px) clamp(40px, 6vw, 80px)',
+                  padding: isMobile
+                    ? 'clamp(20px, 4vw, 40px) clamp(16px, 4vw, 24px)'
+                    : 'clamp(40px, 5vw, 60px) clamp(40px, 6vw, 80px)',
                   overflowY: 'auto',
                   overflowX: 'hidden',
                   transform: 'rotateY(0deg)',
                   boxSizing: 'border-box',
+                  WebkitOverflowScrolling: 'touch',
+                  overscrollBehavior: 'contain',
                 }}
               >
                 <PageComponent />

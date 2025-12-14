@@ -119,7 +119,7 @@ const Experience: React.FC = () => {
             fontSize: 'clamp(28px, 4vw, 40px)',
             color: '#dc6139',
             fontWeight: 700,
-            fontFamily: "'Playfair Display', 'Times New Roman', 'Noto Serif', serif",
+            fontFamily: 'Georgia, serif',
           }}
         >
           Kinh nghiệm làm việc

@@ -80,7 +80,7 @@ const Projects: React.FC = () => {
           marginBottom: 24,
           color: '#dc6139',
           fontWeight: 700,
-          fontFamily: "'Playfair Display', 'Times New Roman', 'Noto Serif', serif",
+          fontFamily: 'Georgia, serif',
         }}
       >
         Dự án
