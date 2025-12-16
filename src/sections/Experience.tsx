@@ -1,4 +1,5 @@
 import React from 'react';
+import LiquidGlass from '../components/liquid-glass';
 
 type Experience = {
   id: string;
@@ -7,7 +8,6 @@ type Experience = {
   period: string;
   type: string;
   industry: string;
-  description: string[];
   logo?: string;
   achievement?: string;
 };
@@ -17,33 +17,21 @@ const experiences: Experience[] = [
     id: 'exp1',
     company: 'Đen Đá Coffee',
     position: 'Social Media - Freelancer',
-    period: '01/7/2025 - Hiện tại',
+    period: '01/7/2025 - 01/12/2025',
     type: 'Freelancer',
     industry: 'F&B',
     logo: '/denda.png',
     achievement: '/denda_achivement.png',
-    description: [
-      'Xác định và lọc nội dung phù hợp với hình ảnh thương hiệu',
-      'Thực hiện quay phim tại hiện trường, đảm bảo chất lượng nội dung với chỉnh sửa hậu kỳ cần thiết',
-      'Có kinh nghiệm booking KOLs/KOCs có phong cách phù hợp với thẩm mỹ của thương hiệu (cơ sở người xem, người theo dõi, phong cách và định dạng nội dung)',
-      'Quản lý fanpage thương hiệu (Facebook, TikTok, Instagram) để phân tích dữ liệu, đánh giá hiệu suất đăng bài và tương tác với khách hàng',
-    ],
   },
   {
     id: 'exp2',
     company: 'Nubé',
     position: 'Social Media - Freelancer',
-    period: '19/09/2025 - Hiện tại',
+    period: '19/09/2025 - 01/12/2025',
     type: 'Freelancer',
     industry: 'Beauty',
     logo: '/nube.png',
     achievement: '/nube_achivement.png',
-    description: [
-      'Xác định và lọc nội dung phù hợp với hình ảnh thương hiệu',
-      'Thực hiện quay phim tại hiện trường, đảm bảo chất lượng nội dung với chỉnh sửa hậu kỳ cần thiết',
-      'Có kinh nghiệm booking KOLs/KOCs có phong cách phù hợp với thẩm mỹ của thương hiệu',
-      'Quản lý fanpage thương hiệu (Facebook, TikTok, Instagram) để phân tích dữ liệu, đánh giá hiệu suất đăng bài và tương tác với khách hàng',
-    ],
   },
   {
     id: 'exp3',
@@ -54,145 +42,119 @@ const experiences: Experience[] = [
     industry: 'Beauty',
     logo: '/anbeautyroom.png',
     achievement: '/anBeautyRoomAchivement.png',
-    description: [
-      'Quản lý và phát triển nội dung video ngắn trên nền tảng TikTok, chịu trách nhiệm toàn bộ quy trình từ chiến lược đến thực thi',
-      'Nghiên cứu sâu về kiến thức Beauty, phân tích và xác định hồ sơ khách hàng mục tiêu, từ đó thiết lập hướng phát triển kênh rõ ràng',
-      'Trực tiếp lập kế hoạch và thực hiện nội dung, viết nội dung hấp dẫn nhấn mạnh mạnh mẽ sản phẩm của thương hiệu',
-    ],
   },
   {
     id: 'exp4',
-    company: 'Mr.Tí Đô - Góc Trà',
+    company: 'Mr.Tí Đô',
     position: 'TikTok Content Creator - Intern',
     period: '19/02/2025 - 19/05/2025',
     type: 'Intern',
     industry: 'F&B',
     logo: '/tido.png',
     achievement: '/tido_achivement.png',
-    description: [
-      'Phát triển và thực hiện Kế hoạch Nội dung chi tiết hàng tuần/tháng được phân loại theo loại nội dung',
-      'Đo lường và phân tích kết quả của mỗi bài đăng để liên tục tối ưu hóa chiến lược nội dung',
-    ],
+  },
+  {
+    id: 'exp5',
+    company: 'Góc trà',
+    position: 'TikTok Content Creator - Intern',
+    period: '19/02/2025 - 19/05/2025',
+    type: 'Intern',
+    industry: 'F&B',
+    logo: '/goctra.png',
+    achievement: '/tido_achivement.png',
   },
 ];
 
-const cardStyle: React.CSSProperties = {
-  border: '1px solid #e8e8e0',
-  borderRadius: 16,
-  padding: 24,
-  background: '#fff',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 12,
-  boxShadow: '0 2px 8px rgba(220, 97, 57, 0.08)',
-  transition: 'all 0.3s ease',
+const accentColor = '#ffd8bf';
+const headingColor = '#ffe8d8';
+
+const gridStyle: React.CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  gap: 20,
+  width: '100%',
 };
 
-const tagStyle: React.CSSProperties = {
-  display: 'inline-block',
-  padding: '6px 14px',
+const badgeStyle: React.CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  padding: '6px 16px',
   borderRadius: 999,
-  border: '1px solid #e8e8e0',
+  border: '1px solid rgba(255, 255, 255, 0.4)',
   fontSize: 12,
-  color: '#dc6139',
-  background: 'rgba(220, 97, 57, 0.1)',
   fontWeight: 500,
+  color: '#fff',
+  background: 'rgba(255, 255, 255, 0.08)',
+  letterSpacing: 0.5,
 };
 
 const Experience: React.FC = () => {
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', padding: '64px 0' }}>
       <div style={{ marginBottom: 32, textAlign: 'center' }}>
         <img
           src="/work-experience.png"
           alt="Kinh nghiệm làm việc"
-          style={{
-            maxWidth: '100%',
-            height: 'auto',
-            borderRadius: 12,
-            marginBottom: 24,
-          }}
+          style={{ maxWidth: '100%', height: 'auto', borderRadius: 24, marginBottom: 24, boxShadow: '0 25px 80px rgba(15, 23, 42, 0.3)' }}
         />
         <h2
           style={{
             margin: 0,
             fontSize: 'clamp(28px, 4vw, 40px)',
-            color: '#dc6139',
+            color: headingColor,
             fontWeight: 700,
-            fontFamily: 'Georgia, serif',
+            letterSpacing: -0.5,
           }}
         >
           Kinh nghiệm làm việc
         </h2>
+        <p style={{ marginTop: 8, color: 'rgba(255, 255, 255, 0.7)', fontSize: 'clamp(14px, 2vw, 16px)' }}>
+          Những dự án freelance & thực tập nổi bật gần đây
+        </p>
       </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 20,
-        }}
-      >
+
+      <div style={gridStyle}>
         {experiences.map((exp) => (
-          <article
+          <LiquidGlass
             key={exp.id}
-            style={cardStyle}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(220, 97, 57, 0.15)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(220, 97, 57, 0.08)';
-            }}
+            layout="inline"
+            displacementScale={48}
+            blurAmount={0.08}
+            saturation={220}
+            aberrationIntensity={1.4}
+            style={{ width: '100%' }}
           >
-            {exp.logo && (
-              <div style={{ marginBottom: 12 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, textAlign: 'left', color: '#101828' }}>
+              {exp.logo && (
                 <img
                   src={exp.logo}
                   alt={`${exp.company} logo`}
-                  style={{
-                    maxWidth: '120px',
-                    height: 'auto',
-                    objectFit: 'contain',
-                  }}
+                  style={{ maxWidth: 120, height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 10px 30px rgba(15, 23, 42, 0.25))' }}
                 />
+              )}
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <span style={badgeStyle}>{exp.type}</span>
+                <span style={badgeStyle}>{exp.industry}</span>
               </div>
-            )}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <h3 style={{ margin: 0, fontSize: 'clamp(18px, 3vw, 22px)', color: '#dc6139', fontWeight: 600 }}>
-                {exp.company}
-              </h3>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-                <span style={tagStyle}>{exp.type}</span>
-                <span style={tagStyle}>{exp.industry}</span>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <h3 style={{ margin: 0, fontSize: 'clamp(18px, 3vw, 22px)', color: accentColor, fontWeight: 600 }}>{exp.company}</h3>
+                <p style={{ margin: 0, fontSize: 'clamp(14px, 2vw, 16px)', fontWeight: 500, color: '#1f2937' }}>{exp.position}</p>
+                <p style={{ margin: 0, fontSize: 'clamp(12px, 2vw, 14px)', color: '#475467' }}>{exp.period}</p>
               </div>
-              <p style={{ margin: 0, fontSize: 'clamp(14px, 2vw, 16px)', fontWeight: 500, color: '#333' }}>
-                {exp.position}
-              </p>
-              <p style={{ margin: 0, fontSize: 'clamp(12px, 2vw, 14px)', color: '#666' }}>
-                {exp.period}
-              </p>
+
+              {exp.achievement && (
+                <div style={{ marginTop: 8 }}>
+                  <img
+                    src={exp.achievement}
+                    alt={`${exp.company} achievement`}
+                    style={{ width: '100%', borderRadius: 16, objectFit: 'cover', boxShadow: '0 18px 45px rgba(15, 23, 42, 0.2)' }}
+                  />
+                </div>
+              )}
             </div>
-            <ul style={{ margin: 0, paddingLeft: 20, color: '#444', fontSize: 'clamp(13px, 2vw, 15px)', lineHeight: 1.8, display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {exp.description.map((desc, idx) => (
-                <li key={idx}>{desc}</li>
-              ))}
-            </ul>
-            {exp.achievement && (
-              <div style={{ marginTop: 12 }}>
-                <img
-                  src={exp.achievement}
-                  alt={`${exp.company} achievement`}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    borderRadius: 8,
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
-            )}
-          </article>
+          </LiquidGlass>
         ))}
       </div>
     </div>

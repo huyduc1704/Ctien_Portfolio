@@ -1,4 +1,5 @@
 import React from 'react';
+import LiquidGlass from '../components/liquid-glass';
 
 type SkillGroup = { title: string; items: string[] };
 
@@ -36,33 +37,24 @@ const softSkills: SkillGroup[] = [
   },
 ];
 
-const cardStyle: React.CSSProperties = {
-  border: '1px solid #e8e8e0',
-  borderRadius: 12,
-  padding: 20,
-  background: '#fff',
-  boxShadow: '0 2px 8px rgba(220, 97, 57, 0.08)',
-  transition: 'all 0.3s ease',
-};
-
 const Skills: React.FC = () => {
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%' }}>
       <h2
         style={{
           margin: 0,
           fontSize: 'clamp(28px, 4vw, 40px)',
           marginBottom: 32,
-          color: '#dc6139',
+          color: '#ffe8d8',
           fontWeight: 700,
-          fontFamily: 'Georgia, serif',
+          letterSpacing: -0.5,
         }}
       >
         Kỹ năng
       </h2>
 
       <div style={{ marginBottom: 32 }}>
-        <h3 style={{ margin: '0 0 16px', fontSize: 'clamp(20px, 3.5vw, 24px)', color: '#dc6139', fontWeight: 600 }}>Hard Skills</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: 'clamp(20px, 3.5vw, 24px)', color: '#ffa76b', fontWeight: 600 }}>Hard Skills</h3>
         <div
           style={{
             display: 'grid',
@@ -71,29 +63,28 @@ const Skills: React.FC = () => {
           }}
         >
           {hardSkills.map((g) => (
-            <div
+            <LiquidGlass
               key={g.title}
-              style={cardStyle}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 20px rgba(220, 97, 57, 0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(220, 97, 57, 0.08)';
-              }}
+              layout="inline"
+              displacementScale={38}
+              blurAmount={0.08}
+              saturation={210}
+              aberrationIntensity={1.2}
+              style={{ width: '100%' }}
             >
-              <h4 style={{ margin: '0 0 8px', fontSize: 'clamp(16px, 3vw, 18px)', color: '#dc6139', fontWeight: 600 }}>{g.title}</h4>
-              <p style={{ margin: 0, color: '#555', fontSize: 'clamp(13px, 2vw, 15px)', lineHeight: 1.6 }}>
-                {g.items[0]}
-              </p>
-            </div>
+              <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <h4 style={{ margin: 0, fontSize: 'clamp(16px, 3vw, 18px)', color: '#ffa76b', fontWeight: 600 }}>{g.title}</h4>
+                <p style={{ margin: 0, color: '#4b5563', fontSize: 'clamp(13px, 2vw, 15px)', lineHeight: 1.6 }}>
+                  {g.items[0]}
+                </p>
+              </div>
+            </LiquidGlass>
           ))}
         </div>
       </div>
 
       <div>
-        <h3 style={{ margin: '0 0 16px', fontSize: 'clamp(20px, 3.5vw, 24px)', color: '#dc6139', fontWeight: 600 }}>Soft Skills</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: 'clamp(20px, 3.5vw, 24px)', color: '#ffa76b', fontWeight: 600 }}>Soft Skills</h3>
         <div
           style={{
             display: 'grid',
@@ -102,25 +93,24 @@ const Skills: React.FC = () => {
           }}
         >
           {softSkills.map((g) => (
-            <div
+            <LiquidGlass
               key={g.title}
-              style={cardStyle}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 20px rgba(220, 97, 57, 0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(220, 97, 57, 0.08)';
-              }}
+              layout="inline"
+              displacementScale={38}
+              blurAmount={0.08}
+              saturation={210}
+              aberrationIntensity={1.2}
+              style={{ width: '100%' }}
             >
-              <h4 style={{ margin: '0 0 12px', fontSize: 'clamp(16px, 3vw, 18px)', color: '#dc6139', fontWeight: 600 }}>{g.title}</h4>
-              <ul style={{ margin: 0, paddingLeft: 20, color: '#555', fontSize: 'clamp(13px, 2vw, 15px)', lineHeight: 1.8 }}>
-                {g.items.map((s, idx) => (
-                  <li key={idx}>{s}</li>
-                ))}
-              </ul>
-            </div>
+              <div style={{ textAlign: 'left' }}>
+                <h4 style={{ margin: '0 0 12px', fontSize: 'clamp(16px, 3vw, 18px)', color: '#ffa76b', fontWeight: 600 }}>{g.title}</h4>
+                <ul style={{ margin: 0, paddingLeft: 20, color: '#4b5563', fontSize: 'clamp(13px, 2vw, 15px)', lineHeight: 1.8 }}>
+                  {g.items.map((s, idx) => (
+                    <li key={idx}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            </LiquidGlass>
           ))}
         </div>
       </div>

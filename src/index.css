@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Be Vietnam Pro', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: #0f1d2d;
+  background-color: #0b0f1a;
+  --text-primary: #0f1d2d;
+  --text-secondary: #475467;
+  --text-muted: #6b7280;
+  --accent: #ffa76b;
+  --accent-strong: #ff7038;
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.12);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,19 +21,25 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--accent-strong);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--accent);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f6f0df;
-  overflow: hidden;
+  background: radial-gradient(circle at 10% 20%, rgba(255, 237, 227, 0.65), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(255, 214, 165, 0.4), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.35), transparent 45%),
+    #0b0f1a;
+  color: var(--text-primary);
+  font-family: 'Be Vietnam Pro', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 * {
@@ -70,7 +82,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--accent-strong);
 }
 button:focus,
 button:focus-visible {
@@ -79,37 +91,27 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #0f1d2d;
+    background-color: #fef7f0;
   }
   a:hover {
-    color: #747bff;
+    color: var(--accent-strong);
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #fff4ed;
   }
+}
+
+/* Liquid Glass Placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
 }
 
 /* Mobile optimizations */
 @media (max-width: 768px) {
   body {
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-  }
-  
-  /* Prevent text selection on swipe */
-  * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  /* Allow text selection in content areas */
-  p, span, h1, h2, h3, h4, h5, h6, li {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
   }
 }

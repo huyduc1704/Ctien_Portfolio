@@ -1,7 +1,7 @@
-import BookFlip from './components/BookFlip';
+import Layout from './components/Layout';
 
 function App() {
-  return <BookFlip />;
+  return <Layout />;
 }
 
 export default App;

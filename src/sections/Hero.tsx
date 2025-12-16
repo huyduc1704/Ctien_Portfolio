@@ -1,102 +1,136 @@
 import React from 'react';
+import LiquidGlass from '../components/liquid-glass';
 
 const scrollToId = (id: string) => {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
+const buttonBase: React.CSSProperties = {
+  padding: '14px 28px',
+  borderRadius: 14,
+  border: 'none',
+  fontSize: 'clamp(14px, 2vw, 16px)',
+  fontWeight: 600,
+  cursor: 'pointer',
+  transition: 'transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease',
+};
+
 const Hero: React.FC = () => {
   return (
     <div
       style={{
+        maxWidth: 1200,
+        margin: '0 auto',
         width: '100%',
         display: 'grid',
-        gap: 24,
-        gridTemplateColumns: '1fr',
+        gap: 32,
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        alignItems: 'stretch',
       }}
     >
-      <div style={{ display: 'grid', gap: 16 }}>
-        <h1
-          style={{
-            margin: 0,
-            fontSize: 'clamp(32px, 5vw, 56px)',
-            lineHeight: 1.2,
-            color: '#dc6139',
-            fontWeight: 700,
-            fontFamily: 'Georgia, serif',
-          }}
-        >
-          Xin chào, mình là Cẩm Tiên 👋
-        </h1>
-        <p style={{ margin: 0, color: '#555', fontSize: 'clamp(14px, 2vw, 18px)', maxWidth: 720, lineHeight: 1.6 }}>
-          Social Media Intern đam mê tạo nội dung sáng tạo, quản lý fanpage và phát triển chiến lược marketing trên các nền tảng mạng xã hội.
-        </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 8 }}>
-          <button
-            onClick={() => scrollToId('projects')}
+      <LiquidGlass
+        layout="inline"
+        displacementScale={60}
+        blurAmount={0.06}
+        saturation={220}
+        aberrationIntensity={1.2}
+        style={{ width: '100%' }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 18, textAlign: 'left' }}>
+          <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.65)', letterSpacing: 2, textTransform: 'uppercase', fontSize: 12 }}>Social Media · Content</p>
+          <h1
             style={{
-              padding: '12px 24px',
-              borderRadius: 10,
-              border: 'none',
-              background: '#dc6139',
-              color: '#fff',
-              cursor: 'pointer',
-              fontSize: 'clamp(14px, 2vw, 16px)',
-              fontWeight: 600,
-              transition: 'transform 0.2s, box-shadow 0.2s, background 0.2s',
-              boxShadow: '0 4px 15px rgba(220, 97, 57, 0.3)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.background = '#c5522d';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(220, 97, 57, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.background = '#dc6139';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(220, 97, 57, 0.3)';
+              margin: 0,
+              fontSize: 'clamp(36px, 6vw, 60px)',
+              lineHeight: 1.2,
+              color: '#ffe8d8',
+              fontWeight: 700,
+              letterSpacing: -0.5,
             }}
           >
-            Xem Projects
-          </button>
-          <button
-            onClick={() => scrollToId('contact')}
-            style={{
-              padding: '12px 24px',
-              borderRadius: 10,
-              border: '2px solid #dc6139',
-              background: 'transparent',
-              color: '#dc6139',
-              cursor: 'pointer',
-              fontSize: 'clamp(14px, 2vw, 16px)',
-              fontWeight: 600,
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#dc6139';
-              e.currentTarget.style.color = '#fff';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = '#dc6139';
-            }}
-          >
-            Liên hệ
-          </button>
+            Xin chào, mình là Cẩm Tiên 👋
+          </h1>
+          <p style={{ margin: 0, color: '#1f2937', fontSize: 'clamp(14px, 2.4vw, 18px)', lineHeight: 1.7 }}>
+            Social Media & Content Creator tập trung vào video ngắn. Mình yêu thích việc biến insight khách hàng thành những
+            câu chuyện trực quan, dễ nhớ và giàu cảm xúc.
+          </p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 8 }}>
+            <button
+              onClick={() => scrollToId('projects')}
+              style={{
+                ...buttonBase,
+                background: 'linear-gradient(135deg, #ff9248, #ff6f61)',
+                color: '#fff',
+                boxShadow: '0 15px 35px rgba(255, 111, 97, 0.35)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              Xem projects nổi bật
+            </button>
+
+            <button
+              onClick={() => scrollToId('contact')}
+              style={{
+                ...buttonBase,
+                background: 'transparent',
+                border: '1px solid rgba(255, 255, 255, 0.6)',
+                color: '#ffb48a',
+                boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.35)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.background = 'transparent';
+              }}
+            >
+              Kết nối ngay
+            </button>
+          </div>
         </div>
-      </div>
-      <div style={{ width: '100%', maxWidth: 600, margin: '0 auto' }}>
-        <img
-          src="/introduce.png"
-          alt="Cẩm Tiên"
-          style={{
-            width: '100%',
-            height: 'auto',
-            borderRadius: 12,
-            objectFit: 'cover',
-          }}
-        />
-      </div>
+      </LiquidGlass>
+
+      <LiquidGlass
+        layout="inline"
+        displacementScale={35}
+        blurAmount={0.05}
+        saturation={180}
+        aberrationIntensity={1}
+        style={{ width: '100%' }}
+        overLight
+      >
+        <div style={{ width: '100%', borderRadius: 24, overflow: 'hidden', position: 'relative' }}>
+          <img
+            src="/introduce.png"
+            alt="Cẩm Tiên"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 16,
+              left: 16,
+              padding: '12px 16px',
+              borderRadius: 999,
+              background: 'rgba(12, 18, 34, 0.65)',
+              color: '#fef3e7',
+              fontSize: 14,
+              fontWeight: 500,
+            }}
+          >
+            +30 video ngắn / tháng
+          </div>
+        </div>
+      </LiquidGlass>
     </div>
   );
 };

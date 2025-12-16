@@ -1,152 +1,168 @@
-import React from "react";
+import React from "react"
+import LiquidGlass from "./liquid-glass"
 
 type NavItem = {
-  id: string;
-  label: string;
-};
+  id: string
+  label: string
+}
 
 const navItems: NavItem[] = [
-  { id: 'about', label: 'Về mình' },
-  { id: 'skills', label: 'Kỹ năng' },
-  { id: 'experience', label: 'Kinh nghiệm' },
-  { id: 'projects', label: 'Dự án' },
-  { id: 'education', label: 'Học vấn' },
-  { id: 'contact', label: 'Liên hệ' },
-];
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+]
 
 const scrollToId = (id: string) => {
-  const el = document.getElementById(id);
+  const el = document.getElementById(id)
   if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
   }
-};
+}
 
 const Navbar: React.FC = () => {
+  const [isSolid, setIsSolid] = React.useState(false)
+
+  React.useEffect(() => {
+    const onScroll = () => setIsSolid(window.scrollY > 24)
+    onScroll()
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
     <header
       style={{
-        position: 'sticky',
+        position: "sticky",
         top: 0,
         zIndex: 50,
-        background: '#ffffffcc',
-        backdropFilter: 'blur(8px)',
-        borderBottom: '1px solid #eee',
+        width: "100%",
+        padding: "12px clamp(16px, 4vw, 32px)",
+        background: `rgba(10, 10, 10, ${isSolid ? 0.85 : 0.55})`,
+        backdropFilter: "blur(24px)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+        boxShadow: isSolid ? "0 18px 45px rgba(0, 0, 0, 0.45)" : "none",
+        transition: "all 0.3s ease",
       }}
     >
-      <nav
-        aria-label="Primary"
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '12px 16px',
-        }}
-      >
-        {/* Left: Logo */}
-        <a
-          href="#hero"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToId('hero');
-          }}
-          style={{
-            fontWeight: 700,
-            fontSize: 18,
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            textDecoration: 'none',
-            letterSpacing: 0.5,
-          }}
-          aria-label="Go to Hero"
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <LiquidGlass
+          layout="inline"
+          displacementScale={42}
+          blurAmount={0.08}
+          saturation={180}
+          aberrationIntensity={2}
+          cornerRadius={999}
+          padding="10px clamp(20px, 4vw, 36px)"
+          style={{ width: "100%" }}
         >
-          Ctien
-        </a>
+          <nav
+            aria-label="Primary"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 24,
+              width: "100%",
+            }}
+          >
+            <a
+              href="#hero"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToId("hero")
+              }}
+              style={{
+                fontWeight: 700,
+                fontSize: "clamp(18px, 2vw, 22px)",
+                color: "#fdf2ea",
+                textDecoration: "none",
+                letterSpacing: 2,
+              }}
+              aria-label="Go to hero section"
+            >
+              CTIEN
+            </a>
 
-        {/* Center: Menu */}
-        <ul
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'clamp(8px, 1.5vw, 24px)',
-            listStyle: 'none',
-            margin: 0,
-            padding: 0,
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            flex: 1,
-          }}
-        >
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId(item.id);
-                }}
-                style={{
-                  color: '#555',
-                  textDecoration: 'none',
-                  fontSize: 'clamp(12px, 1.5vw, 14px)',
-                  whiteSpace: 'nowrap',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#667eea';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#555';
-                }}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+            <ul
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+                gap: 24,
+                flex: 1,
+                flexWrap: "wrap",
+              }}
+            >
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToId(item.id)
+                    }}
+                    style={{
+                      color: "#f9f9f9",
+                      textDecoration: "none",
+                      fontSize: "clamp(13px, 1.5vw, 15px)",
+                      letterSpacing: 0.5,
+                      opacity: 0.85,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.opacity = "1"
+                      e.currentTarget.style.color = "#ffc7aa"
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.opacity = "0.85"
+                      e.currentTarget.style.color = "#f9f9f9"
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-        {/* Right: Download CV */}
-        <a
-          href="/CV_Resume.pdf"
-          download
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            padding: 'clamp(6px, 1vw, 8px) clamp(10px, 1.5vw, 14px)',
-            borderRadius: 8,
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            color: '#fff',
-            fontSize: 'clamp(12px, 1.5vw, 14px)',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            fontWeight: 600,
-            transition: 'all 0.2s',
-            boxShadow: '0 2px 8px rgba(102, 126, 234, 0.3)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 2px 8px rgba(102, 126, 234, 0.3)';
-          }}
-          aria-label="Download CV/Resume"
-          title="Download CV/Resume"
-        >
-          {/* Download icon (inline SVG) */}
-          <svg width="clamp(14px, 1.5vw, 16px)" height="clamp(14px, 1.5vw, 16px)" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 21h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span style={{ display: 'inline' }}>Download CV</span>
-        </a>
-      </nav>
+            <a
+              href="/CV_Resume.pdf"
+              download
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "10px 18px",
+                borderRadius: 999,
+                background: "#dc6139",
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "clamp(12px, 1.5vw, 14px)",
+                fontWeight: 600,
+                transition: "all 0.2s ease",
+                boxShadow: "0 10px 25px rgba(220, 97, 57, 0.25)",
+                whiteSpace: "nowrap",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)"
+                e.currentTarget.style.boxShadow = "0 15px 30px rgba(220, 97, 57, 0.4)"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)"
+                e.currentTarget.style.boxShadow = "0 10px 25px rgba(220, 97, 57, 0.25)"
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 21h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Download CV
+            </a>
+          </nav>
+        </LiquidGlass>
+      </div>
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
