@@ -27,10 +27,7 @@ const Education: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
         <LiquidGlass
           layout="inline"
-          displacementScale={52}
-          blurAmount={0.07}
-          saturation={210}
-          aberrationIntensity={1.2}
+          overLight
           style={{ width: '100%' }}
         >
           <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -51,10 +48,7 @@ const Education: React.FC = () => {
 
         <LiquidGlass
           layout="inline"
-          displacementScale={45}
-          blurAmount={0.08}
-          saturation={220}
-          aberrationIntensity={1.3}
+          overLight
           style={{ width: '100%' }}
         >
           <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 14 }}>

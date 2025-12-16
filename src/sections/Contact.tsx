@@ -63,26 +63,23 @@ const Contact: React.FC = () => {
       <div style={{ width: '100%', maxWidth: 900, margin: '0 auto' }}>
         <LiquidGlass
           layout="inline"
-          displacementScale={55}
-          blurAmount={0.07}
-          saturation={220}
-          aberrationIntensity={1.2}
+          overLight
           style={{ width: '100%' }}
         >
           <div style={{ display: 'grid', gap: 16, textAlign: 'left' }}>
             <div>
-              <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.65)', letterSpacing: 2, textTransform: 'uppercase', fontSize: 12 }}>Liên hệ</p>
+              <p style={{ margin: 0, color: 'rgba(0, 0, 0, 0.5)', letterSpacing: 2, textTransform: 'uppercase', fontSize: 12 }}>Liên hệ</p>
               <h2
                 style={{
                   margin: '8px 0 0 0',
                   fontSize: 'clamp(28px, 4vw, 40px)',
-                  color: '#ffe8d8',
+                  color: '#0f1d2d',
                   fontWeight: 700,
                 }}
               >
                 Sẵn sàng đồng hành cùng bạn!
               </h2>
-              <p style={{ margin: '8px 0 0 0', color: '#1f2937', fontSize: 'clamp(14px, 2vw, 16px)', lineHeight: 1.7 }}>
+              <p style={{ margin: '8px 0 0 0', color: '#475467', fontSize: 'clamp(14px, 2vw, 16px)', lineHeight: 1.7 }}>
                 Gửi tin nhắn để mình có thể hỗ trợ dự án social media, content planning hoặc sản xuất video ngắn.
               </p>
             </div>
@@ -153,10 +150,7 @@ const Contact: React.FC = () => {
           {/* Modal Content */}
           <LiquidGlass
             layout="inline"
-            displacementScale={48}
-            blurAmount={0.07}
-            saturation={230}
-            aberrationIntensity={1.2}
+            overLight
             style={{ width: '100%', maxWidth: 620 }}
           >
             <div style={{ width: '100%', maxHeight: '85vh', overflowY: 'auto', padding: 8, position: 'relative' }} onClick={(e) => e.stopPropagation()}>

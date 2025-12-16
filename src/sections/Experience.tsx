@@ -65,8 +65,8 @@ const experiences: Experience[] = [
   },
 ];
 
-const accentColor = '#ffd8bf';
-const headingColor = '#ffe8d8';
+const accentColor = '#0f1d2d';
+const headingColor = '#0f1d2d';
 
 const gridStyle: React.CSSProperties = {
   display: 'grid',
@@ -80,11 +80,11 @@ const badgeStyle: React.CSSProperties = {
   alignItems: 'center',
   padding: '6px 16px',
   borderRadius: 999,
-  border: '1px solid rgba(255, 255, 255, 0.4)',
+  border: '1px solid rgba(0, 0, 0, 0.1)',
   fontSize: 12,
   fontWeight: 500,
-  color: '#fff',
-  background: 'rgba(255, 255, 255, 0.08)',
+  color: '#475467',
+  background: 'rgba(255, 255, 255, 0.5)',
   letterSpacing: 0.5,
 };
 
@@ -108,7 +108,7 @@ const Experience: React.FC = () => {
         >
           Kinh nghiệm làm việc
         </h2>
-        <p style={{ marginTop: 8, color: 'rgba(255, 255, 255, 0.7)', fontSize: 'clamp(14px, 2vw, 16px)' }}>
+        <p style={{ marginTop: 8, color: '#475467', fontSize: 'clamp(14px, 2vw, 16px)' }}>
           Những dự án freelance & thực tập nổi bật gần đây
         </p>
       </div>
@@ -118,10 +118,7 @@ const Experience: React.FC = () => {
           <LiquidGlass
             key={exp.id}
             layout="inline"
-            displacementScale={48}
-            blurAmount={0.08}
-            saturation={220}
-            aberrationIntensity={1.4}
+            overLight
             style={{ width: '100%' }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, textAlign: 'left', color: '#101828' }}>

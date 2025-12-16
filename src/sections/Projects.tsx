@@ -68,7 +68,7 @@ const Projects: React.FC = () => {
           margin: 0,
           fontSize: 'clamp(28px, 4vw, 40px)',
           marginBottom: 24,
-          color: '#ffe3d3',
+          color: '#0f1d2d',
           fontWeight: 700,
           textAlign: 'center',
         }}

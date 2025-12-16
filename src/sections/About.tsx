@@ -45,10 +45,7 @@ const About: React.FC = () => {
             <LiquidGlass
               key={goal.title}
               layout="inline"
-              displacementScale={42}
-              blurAmount={0.08}
-              saturation={210}
-              aberrationIntensity={1.2}
+              overLight
               style={{ width: '100%' }}
             >
               <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -61,10 +58,6 @@ const About: React.FC = () => {
 
         <LiquidGlass
           layout="inline"
-          displacementScale={50}
-          blurAmount={0.06}
-          saturation={180}
-          aberrationIntensity={1.1}
           overLight
           style={{ width: '100%' }}
         >
