@@ -12,20 +12,17 @@ const chipStyle: React.CSSProperties = {
     justifyContent: "center",
     padding: "6px 14px",
     borderRadius: 999,
-    border: "1px solid rgba(255, 255, 255, 0.35)",
+    border: "1px solid rgba(0, 0, 0, 0.1)",
     fontSize: 12,
-    color: "#ffe3d3",
-    background: "rgba(255, 255, 255, 0.08)",
+    color: "#475467",
+    background: "rgba(255, 255, 255, 0.5)",
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     return (
         <LiquidGlass
             layout="inline"
-            displacementScale={48}
-            blurAmount={0.06}
-            saturation={190}
-            aberrationIntensity={2}
+            overLight
             cornerRadius={24}
             padding="0"
             style={{ width: "100%", height: "100%" }}
@@ -44,14 +41,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <div style={{ padding: "20px", display: "grid", gap: 12 }}>
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                            <h3 style={{ margin: 0, color: "#ffe3d3", fontSize: "clamp(18px, 3vw, 22px)", fontWeight: 600 }}>{project.title}</h3>
+                            <h3 style={{ margin: 0, color: "#0f1d2d", fontSize: "clamp(18px, 3vw, 22px)", fontWeight: 600 }}>{project.title}</h3>
                             {project.year && (
-                                <span style={{ color: "#fdddca", fontSize: 12, marginLeft: "auto" }}>{project.year}</span>
+                                <span style={{ color: "#6b7280", fontSize: 12, marginLeft: "auto" }}>{project.year}</span>
                             )}
                         </div>
-                        {project.period && <p style={{ margin: 0, color: "#f6c9b1", fontSize: 13 }}>{project.period}</p>}
+                        {project.period && <p style={{ margin: 0, color: "#475467", fontSize: 13 }}>{project.period}</p>}
                     </div>
-                    <p style={{ margin: 0, color: "#fdf2ea", lineHeight: 1.5, fontSize: 14 }}>{project.description}</p>
+                    <p style={{ margin: 0, color: "#475467", lineHeight: 1.5, fontSize: 14 }}>{project.description}</p>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                         {project.tags.map((tag) => (
                             <span key={`${project.id}-${tag}`} style={chipStyle}>
@@ -65,7 +62,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                style={{ color: "#ffe3d3", fontSize: 14, textDecoration: "none" }}
+                                style={{ color: "#ff7038", fontSize: 14, textDecoration: "none", fontWeight: 500 }}
                             >
                                 View live →
                             </a>
@@ -75,7 +72,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                                 href={project.repoUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                style={{ color: "#ffe3d3", fontSize: 14, textDecoration: "none" }}
+                                style={{ color: "#ff7038", fontSize: 14, textDecoration: "none", fontWeight: 500 }}
                             >
                                 Case study
                             </a>

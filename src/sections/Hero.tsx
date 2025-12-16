@@ -31,27 +31,24 @@ const Hero: React.FC = () => {
     >
       <LiquidGlass
         layout="inline"
-        displacementScale={60}
-        blurAmount={0.06}
-        saturation={220}
-        aberrationIntensity={1.2}
+        overLight
         style={{ width: '100%' }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18, textAlign: 'left' }}>
-          <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.65)', letterSpacing: 2, textTransform: 'uppercase', fontSize: 12 }}>Social Media · Content</p>
+          <p style={{ margin: 0, color: 'rgba(0, 0, 0, 0.5)', letterSpacing: 2, textTransform: 'uppercase', fontSize: 12 }}>Social Media · Content</p>
           <h1
             style={{
               margin: 0,
               fontSize: 'clamp(36px, 6vw, 60px)',
               lineHeight: 1.2,
-              color: '#ffe8d8',
+              color: '#0f1d2d',
               fontWeight: 700,
               letterSpacing: -0.5,
             }}
           >
             Xin chào, mình là Cẩm Tiên 👋
           </h1>
-          <p style={{ margin: 0, color: '#1f2937', fontSize: 'clamp(14px, 2.4vw, 18px)', lineHeight: 1.7 }}>
+          <p style={{ margin: 0, color: '#475467', fontSize: 'clamp(14px, 2.4vw, 18px)', lineHeight: 1.7 }}>
             Social Media & Content Creator tập trung vào video ngắn. Mình yêu thích việc biến insight khách hàng thành những
             câu chuyện trực quan, dễ nhớ và giàu cảm xúc.
           </p>
@@ -80,13 +77,13 @@ const Hero: React.FC = () => {
               style={{
                 ...buttonBase,
                 background: 'transparent',
-                border: '1px solid rgba(255, 255, 255, 0.6)',
-                color: '#ffb48a',
-                boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.35)',
+                border: '1px solid rgba(255, 180, 138, 0.6)',
+                color: '#ff7038',
+                boxShadow: 'inset 0 0 0 1px rgba(255, 180, 138, 0.35)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.background = 'rgba(255, 180, 138, 0.1)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -101,12 +98,8 @@ const Hero: React.FC = () => {
 
       <LiquidGlass
         layout="inline"
-        displacementScale={35}
-        blurAmount={0.05}
-        saturation={180}
-        aberrationIntensity={1}
-        style={{ width: '100%' }}
         overLight
+        style={{ width: '100%' }}
       >
         <div style={{ width: '100%', borderRadius: 24, overflow: 'hidden', position: 'relative' }}>
           <img

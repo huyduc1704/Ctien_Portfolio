@@ -45,7 +45,7 @@ const Skills: React.FC = () => {
           margin: 0,
           fontSize: 'clamp(28px, 4vw, 40px)',
           marginBottom: 32,
-          color: '#ffe8d8',
+          color: '#0f1d2d',
           fontWeight: 700,
           letterSpacing: -0.5,
         }}
@@ -66,10 +66,7 @@ const Skills: React.FC = () => {
             <LiquidGlass
               key={g.title}
               layout="inline"
-              displacementScale={38}
-              blurAmount={0.08}
-              saturation={210}
-              aberrationIntensity={1.2}
+              overLight
               style={{ width: '100%' }}
             >
               <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -96,10 +93,7 @@ const Skills: React.FC = () => {
             <LiquidGlass
               key={g.title}
               layout="inline"
-              displacementScale={38}
-              blurAmount={0.08}
-              saturation={210}
-              aberrationIntensity={1.2}
+              overLight
               style={{ width: '100%' }}
             >
               <div style={{ textAlign: 'left' }}>
